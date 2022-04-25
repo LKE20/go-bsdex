@@ -7,8 +7,8 @@ import (
 	"net/http"
 )
 
-AUCTION_ENDPOINT = "/auction"
-SYMBOL_SEPARATOR = "-"
+const AUCTION_ENDPOINT = "/auction"
+const SYMBOL_SEPARATOR = "-"
 
 type AuctionResp struct {
 	BuyPrice   string `json:"buy_price"`
@@ -18,12 +18,13 @@ type AuctionResp struct {
 	SellVolume string `json:"sell_volume"`
 }
 
-func Auction(baseAsset string, quoteAsset string) (*AuctionResp, error) {
+func (a *APIClient) Auction(baseAsset string, quoteAsset string) (*AuctionResp, error) {
   b, err := a.requestGET(baseAsset + SYMBOL_SEPARATOR + quoteAsset + AUCTION_ENDPOINT, nil)
 	if err != nil {
 		return nil, err
 	}
-  
+	
+	resp := new(AuctionResp)
 	err = json.Unmarshal(b, &resp)
 	return resp, err
 }
