@@ -13,7 +13,7 @@ const SYMBOL_SEPARATOR = "-"
 type AuctionResp struct {
 	BuyPrice   string `json:"buy_price"`
 	BuyVolume  string `json:"buy_volume"`
-	Market     string `json:"error"`
+	Market     string `json:"market"`
 	SellPrice  string `json:"sell_price"`
 	SellVolume string `json:"sell_volume"`
 }
